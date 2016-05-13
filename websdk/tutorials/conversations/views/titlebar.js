@@ -15,15 +15,16 @@
      */
     render: function(conversation) {
       // Tutorial Step 5: Change title when a conversation is selected
-      var title = 'Logged in as: ' +
-        layerSampleApp.Identities.getDisplayName(layerSampleApp.client.userId);
-      this.$el.html('<div class="title">' + title + '</div>');
+      var user = layerSampleApp.client.user;
+      var img = '<img src="' + user.avatarUrl + '"/>';
+      var title = 'Logged in as: ' + user.displayName;
+      this.$el.html('<div class="title">' + img + title + '</div>');
     }
   });
 
   function betterTitle(participants) {
       return participants.map(function(userId) {
-          return layerSampleApp.Identities.getDisplayName(userId);
+          return layerSampleApp.client.getIdentity(userId).displayName;
       }).join(', ');
   }
 })();
