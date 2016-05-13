@@ -25,7 +25,7 @@ Open up your `index.html` file and update the `layerSampleConfig.appId` variable
 ```javascript
 window.layerSampleConfig = {
   appId: '%%C-INLINE-APPID%%',
-  userId: 'Tutorial User'
+  userId: '0'
 };
 ```
 
@@ -100,16 +100,18 @@ Open up `views/titlebar.js`, and replace the render method with:
 
 ```javascript
 render: function(conversation) {
-    // Tutorial Steps 5 and 6: Show the User Name
-    var title = 'Logged in as: ' + layerSampleApp.client.user.displayName;
-    this.$el.html('<div class="title">' + title + '</div>');
+    // Tutorial Step 5: Show the User Name
+    var user = layerSampleApp.client.user;
+    var img = '<img src="' + user.avatarUrl + '"/>';
+    var title = 'Logged in as: ' + user.displayName;
+    this.$el.html('<div class="title">' + img + title + '</div>');
 }
 ```
 
-The Client has a `user` property that stores a layer.UserIdentity instance representing the user of this Client.  The `user` object contains two key properties:
+The Client has a `user` property that stores a layer.UserIdentity instance representing the user of this Client.  The `user` object contains three key properties:
 
-1. `userId`: This property should be the same as `window.layerSampleConfig.userId` (i.e. `Tutorial User`).  This UserID is a unique identifier defined within your own servers/services for identifying your users.
-2. `displayName`: The Display name is typically set when creating an Identity Token (done by our Sample Identity Service), but can also be set using the [Layer Platform API](https://developer.layer.com/docs/platform/users).
+1. `userId`: This property should be the same as `window.layerSampleConfig.userId` (i.e. `0`).  This UserID is the unique identifier identifying this user; typically it would be defined within your own server's account management system.
+2. `displayName`: This is the recommended string for rendering this user's name.  The Display name is typically set when creating an Identity Token (done by our Sample Identity Service), but can also be set using the [Layer Platform API](https://developer.layer.com/docs/platform/users).
+3. `avatarUrl`: This string provides a URL for rendering the user's avatar.  This string may not always have a value.
 
-Run this app; you should see a UI that logs in and then displays `Logged in as: Tutorial User`.
-
+Run this app; you should see a UI that logs in and then displays `Logged in as: User 0`, and show this user's icon in the titlebar.

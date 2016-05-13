@@ -247,9 +247,14 @@ button {
   padding: 8px;
   align-items: center;
 }
+
 .panel-header .title {
   flex-grow: 1;
   text-align: center;
+}
+
+.panel-header .title img {
+  float: left;
 }
 
 .panel-header .icon {
