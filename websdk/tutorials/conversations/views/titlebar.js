@@ -14,7 +14,7 @@
      * into displayable names.
      */
     render: function(conversation) {
-      // Tutorial Step 5: Change title when a conversation is selected
+      // Tutorial Step 6: Change title when a conversation is selected
       var user = layerSampleApp.client.user;
       var img = '<img src="' + user.avatarUrl + '"/>';
       var title = 'Logged in as: ' + user.displayName;
