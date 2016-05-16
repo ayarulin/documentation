@@ -13,9 +13,10 @@
     },
 
     betterTitle: function(participants) {
-        return participants.map(function(userId) {
-            return layerSampleApp.Identities.getDisplayName(userId);
-        }).join(', ');
+      return participants.map(function(userId) {
+        var identity = layerSampleApp.client.getIdentity(userId);
+        return identity ? identity.displayName : 'Unknown User ' + userId;
+      }).join(', ');
     },
 
     buildConversationRow: function(conversation) {
