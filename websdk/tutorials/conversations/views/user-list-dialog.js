@@ -62,7 +62,9 @@
      */
     renderUser: function(list, user) {
       // Tutorial Step 7
-      list.append('<div class="user-list-item">' + user.displayName + '</div>');
+      if (user !== layerSampleApp.client.user) {
+        list.append('<div class="user-list-item">' + user.displayName + '</div>');
+      }
     },
 
     /**
