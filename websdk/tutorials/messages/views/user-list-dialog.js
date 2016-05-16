@@ -61,7 +61,7 @@
      * Render an individual User
      */
     renderUser: function(list, user) {
-      if (user !== layerSampleApp.client.userId) {
+      if (user !== layerSampleApp.client.user) {
         list.append(
           '<div class="user-list-item">' +
             '<label for="participant-checkbox-' + user.userId + '">' +
