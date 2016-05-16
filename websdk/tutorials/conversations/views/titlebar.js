@@ -10,7 +10,7 @@
 
     /**
      * Render the title for the current Conversation.
-     * Use the Identity Service's getDisplayName to turn userIds
+     * Use the Identity Object's displayName to turn userIds
      * into displayable names.
      */
     render: function(conversation) {
