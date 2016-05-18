@@ -183,19 +183,24 @@ message.isRead = true;
 
 ## Receiving the Message
 
-When displaying the message, you can get the Sender's User ID and, if necessary, do a lookup in your user management system:
+When displaying the message, you may want to render information about the Message Sender.  The `sender` property contains a `layer.Identity` object which typically contains properties for:
+
+* `displayName`: A displayable version of the user's name
+* `avatarUrl`: An image URL that loads an icon that can go next to the user's `displayName`.
+* `userId`: The ID of the user (the same ID used to add them to a Conversation)
+
+Of the above properties, only `userId` is gauranteed to exist; the others will exist if you populate them via your Identity Token or using the Platform API.
 
 ```javascript
-// The sender's user id
-var senderID = message.sender.userId;
-var displayName = myUserCache.lookup(senderID);
+var sender = message.sender;
+myRender(sender.displayName, sender.avatarUrl);
 ```
 
-Messages can also be sent from the Platform API as a named service, rather than as coming from a participant of the Conversation:
+Messages can also be sent from the Platform API as a named service, rather than as coming from a participant of the Conversation; these provide a `layer.ServiceIdentity` object as the `sender` property.  This will NOT have a `userId` nor an `avatarUrl` property.
 
 ```javascript
-// The named service
-var serviceName = message.sender.name;
+var sender = message.sender;
+myRender(sender.displayName);
 ```
 
 You will also need to check the message's Mime Type (set when the message was sent) in order to know how to decode the message contents.
