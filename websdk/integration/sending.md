@@ -7,10 +7,6 @@ Conversation objects are created by calling `client.createConversation()`. This 
 By default, new Conversations are set to be `distinct`, which ensures that there is only one unique conversation between the given set of users.
 
 ```javascript
-// Creates and returns a distinct conversation object with the given user
-var conversation = client.createConversation(['USER-IDENTIFIER']);
-
-// Or long form:
 var conversation = client.createConversation({
     participants: ['USER-IDENTIFIER'],
     distinct: true
